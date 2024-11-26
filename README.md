@@ -29,7 +29,7 @@
 
 ## 시연 영상
 
-시연 영상: ![바로가기](https://drive.google.com/file/d/1HochLzugwRBBXeGZ66m4WTkfwRYEGF6J/view?usp=sharing)
+시연 영상: [바로가기](https://drive.google.com/file/d/1HochLzugwRBBXeGZ66m4WTkfwRYEGF6J/view?usp=sharing)
 
 ## 요구사항 정의서
 
