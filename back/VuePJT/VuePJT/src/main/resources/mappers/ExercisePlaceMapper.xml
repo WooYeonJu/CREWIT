@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ws.model.dao.ExercisePlaceDao">
+
+	<insert id="save" parameterType="ExercisePlace">
+		INSERT INTO exercise_place (name, location, exercise)
+		VALUES (#{name}, #{location}, #{exercise});		
+	</insert>
+
+
+	<select id="select" resultType="ExercisePlace">
+		SELECT * FROM exercise_place LIMIT 10;
+	</select>
+
+	<select id="searchById" resultType="ExercisePlace">
+		SELECT * FROM exercise_place WHERE id=#{id};
+	</select>
+	
+	<select id="searchByCondition" resultType="ExercisePlace"
+		parameterType="SearchCondition"> SELECT * FROM exercise_place <!-- 검색 조건 -->
+		<if
+			test="key != 'none'">
+			WHERE ${key} LIKE concat('%',#{word},'%')
+		</if>
+	</select>
+
+</mapper>

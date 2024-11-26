@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ws.model.dao.CrewDao">
+
+	<!-- 상세 게시글 조회 -->
+	<resultMap id="CrewResultMap" type="Crew">
+		<id property="id" column="id" />
+		<result property="crewName" column="crew_name" />
+		<result property="crewLeader" column="crew_leader" />
+		<result property="crewCreateDate" column="crew_create_date" />
+		<result property="crewCurrMember" column="crew_curr_member" />
+		<result property="crewMaxMember" column="crew_max_member" />
+		<result property="crewContent" column="crew_content" />
+		<result property="crewExerciseCode" column="crew_exercise_code" />
+		<result property="crewExerciseName" column="crew_exercise_name" />
+		<result property="crewLocation" column="crew_location" />
+		<result property="crewExerciseDate" column="crew_exercise_date" />
+		<!-- crewMembers는 컴마로 구분된 문자열로 처리 -->
+		<!--<result property="crewMembers" column="crew_members" />-->
+	</resultMap>
+
+	<!-- 전체 게시글 조회 및 검색기능 -->
+	<select id="search" resultMap="CrewResultMap"
+		parameterType="SearchCondition"> SELECT * FROM crew <!-- 검색 조건 -->
+		<if
+			test="key != 'none'">
+			WHERE ${key} LIKE concat('%',#{word},'%')
+		</if>
+		<!-- 정렬 조건 -->
+		<if
+			test="orderBy != 'none'">
+			ORDER BY ${orderBy} ${orderByDir}
+		</if>
+	</select>
+
+
+	<select id="selectOne" resultMap="CrewResultMap" parameterType="int">
+		SELECT
+		crew.id,
+		crew.crew_name,
+		crew.crew_leader,
+		crew.crew_create_date,
+		crew.crew_curr_member,
+		crew.crew_max_member,
+		crew.crew_content,
+		crew.crew_exercise_code,
+		exercise.exercise AS crew_exercise_name,
+		crew.crew_location,
+		crew.crew_exercise_date,
+		GROUP_CONCAT(crew_members.crew_member) AS crew_members
+		FROM
+		crew
+		LEFT JOIN
+		crew_members ON crew.id = crew_members.crew_id
+		LEFT JOIN
+		exercise ON crew.crew_exercise_code = exercise.id
+		WHERE
+		crew.id = #{id}
+		GROUP BY
+		crew.id;
+	</select>
+
+
+	<!-- 게시글 등록 -->
+	<insert id="insertCrew" parameterType="Crew" keyProperty="id"
+		useGeneratedKeys="true">
+		INSERT INTO crew (crew_name, crew_leader,
+		crew_curr_member, crew_max_member, crew_content,
+		crew_exercise_code, crew_location, crew_exercise_date)
+		VALUES
+		(#{crewName}, #{crewLeader}, #{crewCurrMember},
+		#{crewMaxMember}, #{crewContent}, #{crewExerciseCode},
+		#{crewLocation}, #{crewExerciseDate});
+	</insert>
+
+	<!-- 게시글 수정 -->
+	<update id="updateCrew" parameterType="Crew">
+		UPDATE crew
+		SET
+		crew_name=#{crewName}, 
+		crew_max_member=#{crewMaxMember},
+		crew_content=#{crewContent},crew_exercise_code=#{crewExerciseCode},
+		crew_location=#{crewLocation},crew_exercise_date=#{crewExerciseDate}
+		WHERE id = #{id};
+	</update>
+
+	<!-- 게시글 삭제 -->
+	<delete id="deleteCrew" parameterType="int">
+		DELETE FROM crew
+		WHERE id = #{id};
+	</delete>
+
+</mapper>

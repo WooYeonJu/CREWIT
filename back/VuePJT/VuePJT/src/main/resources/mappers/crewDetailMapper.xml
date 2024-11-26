@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ws.model.dao.CrewDetailBoardDao">
+
+	<select id="selectAll" resultType="CrewDetailBoard">
+		SELECT * FROM crew_detail_board;
+	</select>
+
+	<select id="selectByCrewId" resultType="CrewDetailBoard" parameterType="int">
+		SELECT *
+		FROM crew_detail_board
+		WHERE crew_id = #{id};
+	</select>
+	
+	<select id="selectByBoardId" resultType="CrewDetailBoard" parameterType="int">
+		SELECT *
+		FROM crew_detail_board
+		WHERE board_id = #{id};
+	</select>
+
+	<select id="searchByTitle" resultType="CrewDetailBoard" parameterType="Map">
+		SELECT *
+		FROM crew_detail_board
+		WHERE board_title LIKE CONCAT('%', #{title}, '%')
+		AND crew_id = #{crewId};
+	</select>
+	
+	    <!-- 게시글 등록 -->
+    <insert id="writeCrewBoard" parameterType="crewDetailBoard" keyProperty="boardId"
+        useGeneratedKeys="true">
+        INSERT INTO crew_detail_board(crew_id, board_id, board_title, board_writer, board_content) 
+        VALUES
+        (#{crewId}, #{boardId}, #{boardTitle}, #{boardWriter}, #{content});
+    </insert>
+
+    <!-- 게시글 수정 -->
+    <update id="modifyCrewBoard" parameterType="crewDetailBoard">
+        UPDATE crew_detail_board
+        SET
+        board_title=#{boardTitle},
+        board_content=#{content}
+        WHERE
+        board_id=#{boardId};
+    </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="removeCrewBoard" parameterType="int">
+        DELETE FROM crew_detail_board
+        WHERE board_id = #{boardId};
+    </delete>
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ws.model.dao.MapCommentDao">
+
+    <insert id="insert" parameterType="MapComment">
+        INSERT INTO exercise_place_review (place_id, writer, review, rate)
+        VALUES(#{placeId}, #{writer}, #{content}, #{rate})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM exercise_place_review
+        where id = #{id}
+    </delete>
+
+    <select id="selectAll" resultType="MapComment">
+        SELECT * FROM exercise_place_review
+    </select>
+
+    <select id="searchByPlaceId" resultType="MapComment" parameterType="int">
+        SELECT *
+        FROM exercise_place_review
+        WHERE place_id = #{placeId}; 
+    </select>
+    
+    <update id="modifyComment" parameterType="MapComment">
+		UPDATE exercise_place_review
+		SET
+		review = #{content}, rate = #{rate}
+		WHERE
+		id = #{id};
+	</update>
+</mapper>
