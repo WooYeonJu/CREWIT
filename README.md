@@ -2,7 +2,7 @@
 
 | "크루(CREW)"와 "하자(DO IT)"을 합쳐, 함께 운동할 사람을 모집하여 활동할 수 있는 커뮤니티
 
-![logo-removebg-preview](/uploads/7f2d882c4354f60b1e4df52634d42073/logo-removebg-preview.png)
+![logo-removebg-preview](https://github.com/user-attachments/assets/0f4c5e7c-2900-42dd-9409-e72b434ca601)
 
 ## 프로젝트 개요
 
@@ -75,19 +75,19 @@
 
 ## 유즈케이스 다이어그램
 
-![usecase_diagram](/uploads/4d140394071257b7804eb030692ccdeb/usecase_diagram.png)
+![usecase_diagram](https://github.com/user-attachments/assets/21a27b35-1eff-4828-874a-242a2a635aa8)
 
 ## 테이블 구조도(ERD)
 
-![image](/uploads/0d1c55636f8d493b0cc2d2f5a1e1bc17/image.png)
+![image](https://github.com/user-attachments/assets/02553c74-1eb2-4164-9afe-2bf414f9cc5a)
 
 ## 클래스 다이어그램
 
-![class_diagram](/uploads/214d9ca8e246a77564eb476b2baba8ad/class_diagram.png)
+![class_diagram](https://github.com/user-attachments/assets/f2a21607-e163-4546-8c86-ea133ada8458)
 
 ## 화면 설계서
 
-![mockup1](/uploads/1d483c73951e2517abcc5aeee90dd324/mockup1.png)
-<<<<<<< HEAD
+![mockup1](https://github.com/user-attachments/assets/03fe0cb9-3cd0-4439-b17f-c90fc6c6c4e3)
 
-![mockup2](/uploads/9113fd4f5fcce4819f0aa686a99a27c2/mockup2.png)
+![mockup2](https://github.com/user-attachments/assets/d14307d8-bcac-4280-9ae8-82e1c4f4989c)
+
